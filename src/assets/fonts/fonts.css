@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Manrope";
+  src: url("Manrope-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("Lato-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("DMSans-Regular.ttf") format("truetype");
+}

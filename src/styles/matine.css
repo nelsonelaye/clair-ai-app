@@ -1,0 +1,26 @@
+:where([data-mantine-color-scheme="light"])
+  .m_18320242:where([data-visible])::after {
+  background: linear-gradient(
+    45deg,
+    #ffb3b3,
+    /* Lighter, more pastel versions */ #b3e5e0,
+    #b3d9ed,
+    #c9e4d4,
+    #fff5d1,
+    #ffb3b3
+  );
+  background-size: 300% 300%;
+  animation: rainbowPulse 2s ease-in-out infinite;
+}
+
+@keyframes rainbowPulse {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.7;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+}
