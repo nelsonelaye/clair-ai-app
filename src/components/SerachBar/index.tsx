@@ -21,6 +21,7 @@ import useQueryError from "@/hooks/useQueryError";
 import { recommendedStocks } from "@/constants/stocks";
 import { StockTickerInterface } from "@/types/stocks";
 import { TbCircleDotted } from "react-icons/tb";
+import { Skeleton } from "@mantine/core";
 
 interface Action {
   id?: string;
@@ -38,7 +39,7 @@ interface SearchBarProps {
 
 function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState<any>(recommendedStocks);
+  const [result, setResult] = useState<any>();
   const [isFocused, setIsFocused] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [selectedAction, setSelectedAction] = useState<Action | null>(null);
@@ -76,6 +77,7 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
   });
 
   useEffect(() => {
+    console.log(data);
     setResult(data?.data);
   }, [data, isSuccess]);
 
@@ -155,7 +157,7 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
                     return (
                       <div
                         key={label}
-                        className="inline-flex items-center p-1  md:p-2 md:px-3 rounded-full md:text-base font-medium
+                        className="inline-flex items-center p-1  md:p-2  rounded-full md:text-sm font-medium
                   whitespace-nowrap overflow-hidden text-[10px] bg-[#88D7C1]/20 text-[#3ABEAD]"
                       >
                         {label}
@@ -182,7 +184,7 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
                 onFocus={() => {
                   setIsFocused(true);
                 }}
-                onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+                onBlur={() => setIsFocused(false)}
                 className="w-full h-full text-sm outline-none"
                 disabled={selectedTickers?.length == 5}
               />
@@ -229,7 +231,7 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
 
         <div className="w-full max-w-lg absolute top-[70px] z-50">
           <AnimatePresence>
-            {isLoading || query.length > 0 || isFocused || result ? (
+            {isLoading || isFocused || result ? (
               <motion.div
                 className="w-full min-h-[250px] rounded-md shadow-sm overflow-hidden  bg-white mt-1 max-h-[300px] overflow-y-auto"
                 variants={container}
@@ -245,29 +247,39 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
                         : "Recommended"}
                     </span>
                   </div>
-                  {(result?.length > 0 && query.length == 0
-                    ? result
-                    : recommendedStocks
-                  )?.map((e: StockTickerInterface) => (
-                    <motion.li
-                      key={e?.ticker}
-                      className="px-3 py-2 flex items-center justify-between hover:bg-gray-200  cursor-pointer rounded-md"
-                      variants={item}
-                      layout
-                      onClick={() => handleSelect(e?.ticker)}
-                    >
-                      <div className="flex items-center gap-2 justify-between">
-                        <div className="flex items-center gap-2">
-                          {/* <span className="text-gray-500">{e.icon}</span> */}
-                          <span className="text-sm font-medium text-[#040316] dark:text-white">
-                            {e?.ticker}
-                          </span>
-                          <span className="text-xs text-[#5F5F5F] dark:text-[#9B9B9B]">
-                            {e?.name}
-                          </span>
+
+                  {isLoading ? (
+                    <div className="w-full px-3">
+                      <Skeleton height={20} mb={10} radius="md" />
+                      <Skeleton height={20} mb={10} radius="md" />
+                      <Skeleton height={20} mb={10} radius="md" />
+                      <Skeleton height={20} mb={10} radius="md" />
+                      <Skeleton height={20} mb={10} radius="md" />
+                    </div>
+                  ) : (
+                    (isSuccess || (result?.length > 0 && query.length == 0)
+                      ? result
+                      : recommendedStocks
+                    )?.map((e: StockTickerInterface) => (
+                      <motion.li
+                        key={e?.ticker}
+                        className="px-3 py-2 flex items-center justify-between hover:bg-gray-200  cursor-pointer rounded-md"
+                        variants={item}
+                        layout
+                        onClick={() => handleSelect(e?.ticker)}
+                      >
+                        <div className="flex items-center gap-2 justify-between">
+                          <div className="flex items-center gap-2">
+                            {/* <span className="text-gray-500">{e.icon}</span> */}
+                            <span className="text-sm font-medium text-[#040316] dark:text-white">
+                              {e?.ticker}
+                            </span>
+                            <span className="text-xs text-[#5F5F5F] dark:text-[#9B9B9B]">
+                              {e?.name}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                      {/* <div className="flex items-center gap-2">
+                        {/* <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-400">
                           {action.short}
                         </span>
@@ -275,8 +287,9 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
                           {action.end}
                         </span>
                       </div> */}
-                    </motion.li>
-                  ))}
+                      </motion.li>
+                    ))
+                  )}
                 </motion.ul>
                 <div className="mt-2 px-3 py-2 border-t border-gray-100 dark:border-gray-800">
                   {/* <div className="flex items-center justify-between text-xs text-gray-500">

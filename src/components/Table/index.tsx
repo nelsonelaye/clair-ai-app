@@ -11,7 +11,7 @@ interface TableCaptionProps
   extends React.HTMLAttributes<HTMLTableCaptionElement> {}
 
 const Table = ({ className, ...props }: TableProps) => (
-  <div className="relative w-full overflow-auto">
+  <div className="relative w-full overflow-x-auto">
     <table
       className={cn("w-full caption-bottom text-sm", className)}
       {...props}

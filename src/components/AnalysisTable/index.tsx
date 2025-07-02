@@ -34,13 +34,13 @@ export function AnalysisTable({ data, investorType }: AnalysisTableProps) {
     ratioLabel: string,
     ratioValue: number
   ) => {
-    console.log("clicked");
+    // console.log("clicked");
     setIsLoadingTip(true);
     setOutput("");
     setError("");
     const message = `${stockName} stock has a ${ratioLabel} ratio of ${ratioValue}. The investor is ${investorType}`;
     await streamModelInsight(message, (chunk) => {
-      console.log("chunk", chunk);
+      // console.log("chunk", chunk);
       setOutput((prev) => prev + chunk);
     }).catch((e) => {
       setError(e);

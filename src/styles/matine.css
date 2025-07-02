@@ -1,5 +1,5 @@
 :where([data-mantine-color-scheme="light"])
-  .m_18320242:where([data-visible])::after {
+  .rainbow-skeleton.m_18320242:where([data-visible])::after {
   background: linear-gradient(
     45deg,
     #ffb3b3,
