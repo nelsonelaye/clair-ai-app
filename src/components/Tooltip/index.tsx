@@ -1,11 +1,6 @@
 import * as React from "react";
-import { DropdownMenu, Popover } from "radix-ui";
-import {
-  HamburgerMenuIcon,
-  DotFilledIcon,
-  CheckIcon,
-  ChevronRightIcon,
-} from "@radix-ui/react-icons";
+import { Popover } from "radix-ui";
+
 import { Skeleton } from "@mantine/core";
 
 interface Props {
@@ -15,10 +10,6 @@ interface Props {
   error?: any;
 }
 const ToolTip = ({ isLoading, children, content, error }: Props) => {
-  const [bookmarksChecked, setBookmarksChecked] = React.useState(true);
-  const [urlsChecked, setUrlsChecked] = React.useState(false);
-  const [person, setPerson] = React.useState("pedro");
-  console.log(error.message);
   return (
     <>
       <Popover.Root>

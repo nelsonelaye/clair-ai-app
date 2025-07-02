@@ -84,7 +84,7 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
   useEffect(() => {
     const stocks = localStorage.getItem("stocks");
     if (stocks) {
-      setSelectedTickers(JSON.parse(stocks).symbol);
+      setSelectedTickers(JSON.parse(stocks)?.symbol);
       // console.log(JSON.parse(stocks));
     }
   }, []);

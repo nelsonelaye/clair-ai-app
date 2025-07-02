@@ -62,12 +62,12 @@ export const streamModelInsight = async (
       }
     );
 
-    const reader = response.body.getReader();
+    const reader = response?.body?.getReader();
     const decoder = new TextDecoder();
     let result = "";
 
     while (true) {
-      const { value, done } = await reader.read();
+      const { value, done } = (await reader?.read()) || {};
       if (done) break;
 
       const chunk = decoder.decode(value);

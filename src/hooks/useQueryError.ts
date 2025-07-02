@@ -10,7 +10,7 @@ const useQueryError = ({
 }) => {
   useEffect(() => {
     if (isError) {
-      toast(error.message);
+      toast.error(error.message);
     }
   }, [isError, error]);
 };
