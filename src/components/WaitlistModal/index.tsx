@@ -32,6 +32,7 @@ export default function WaitlistModal() {
     },
     onError: (error) => {
       console.log(error);
+      // @ts-ignore
       toast.error(error?.response?.data?.message);
     },
   });
