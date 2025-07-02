@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import TanstackClientProvider from "./TanstackClientProvider";
 import { ThemeProvider } from "./ThemeProvider";
