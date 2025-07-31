@@ -67,7 +67,7 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
     setSelectedTickers(newSelected);
   };
 
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isSuccess, isLoading, isError, error } = useQuery({
     queryKey: ["search-stocks-tickers", debouncedQuery],
     // queryFn: ,
     queryFn: () =>
@@ -77,11 +77,11 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
   });
 
   useEffect(() => {
-    console.log(data?.info);
-    // setResult(data);
+    console.log(data?.data);
+    setResult(data?.data);
   }, [data, isSuccess, isLoading]);
 
-  // useQueryError({is})
+  useQueryError({isError: isError, error})
 
   useEffect(() => {
     const stocks = localStorage.getItem("stocks");
