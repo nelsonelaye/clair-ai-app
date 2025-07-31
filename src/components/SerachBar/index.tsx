@@ -176,9 +176,7 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
               <input
                 ref={inputRef}
                 type="text"
-                placeholder={
-                  selectedTickers?.length == 0 ? "Search company" : ""
-                }
+                placeholder="Search company"
                 value={query}
                 onChange={handleInputChange}
                 onFocus={() => {
