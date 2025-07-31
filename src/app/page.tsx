@@ -157,9 +157,9 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="relative transform rotate-6 transition-transform hover:rotate-0 duration-500 ml-[-80px] mt-20">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#3ABEAD] to-[#88D7C1] opacity-70 rounded-2xl blur-lg"></div>
-                  <div className="relative bg-[#3ABEAD] p-1 rounded-2xl shadow-xl">
-                    <div className="bg-[#3ABEAD] p-4 rounded-xl text-white">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#BE3A67] to-[#88D7C1] opacity-70 rounded-2xl blur-lg"></div>
+                  <div className="relative bg-[#BE3A67] p-1 rounded-2xl shadow-xl">
+                    <div className="bg-[#BE3A67] p-4 rounded-xl text-white">
                       <div className="flex justify-between items-center mb-8">
                         <span className="font-bold text-lg">VestFinance</span>
                         <div className="w-10 h-6 bg-white/20 rounded-md flex items-center justify-end p-1">

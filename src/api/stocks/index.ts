@@ -13,7 +13,6 @@ export const fetchTickers = async (query: string) => {
 };
 
 export const fetchStockInfos = async (tickers: Array<string>) => {
-  console.log("tickers", tickers);
   try {
     const params = new URLSearchParams();
     tickers.forEach((ticker) => {

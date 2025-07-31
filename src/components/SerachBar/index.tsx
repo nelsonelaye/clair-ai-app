@@ -77,9 +77,9 @@ function SearchBar({ onSend, isLoading: isLoadingResult }: SearchBarProps) {
   });
 
   useEffect(() => {
-    console.log(data);
-    setResult(data?.data);
-  }, [data, isSuccess]);
+    console.log(data?.info);
+    // setResult(data);
+  }, [data, isSuccess, isLoading]);
 
   // useQueryError({is})
 

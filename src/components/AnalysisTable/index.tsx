@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaInfoCircle,
   FaArrowUp,
@@ -28,17 +28,17 @@ export function AnalysisTable({ data, investorType }: AnalysisTableProps) {
   const [isLoadingTip, setIsLoadingTip] = useState(true);
   const [error, setError] = useState("");
   const [output, setOutput] = useState("");
+  const [appetite, setAppetite] = useState(investorType);
 
   const handleTip = async (
     stockName: string,
     ratioLabel: string,
     ratioValue: number
   ) => {
-    // console.log("clicked");
     setIsLoadingTip(true);
     setOutput("");
     setError("");
-    const message = `${stockName} stock has a ${ratioLabel} ratio of ${ratioValue}. The investor is ${investorType}`;
+    const message = `${stockName} stock has a ${ratioLabel} ratio of ${ratioValue}. The investor is ${appetite}`;
     await streamModelInsight(message, (chunk) => {
       // console.log("chunk", chunk);
       setOutput((prev) => prev + chunk);
@@ -48,6 +48,9 @@ export function AnalysisTable({ data, investorType }: AnalysisTableProps) {
     });
     setIsLoadingTip(false);
   };
+  useEffect(() => {
+    setAppetite(investorType);
+  }, [investorType]);
 
   return (
     <>

@@ -113,7 +113,7 @@ export default function Analysis({
                         <IoBriefcase fontSize={12} className="mr-2" />
 
                         <label>Risk: </label>
-                        <select className="w-[100px] outline-0 text-sm truncate">
+                        <select className="w-[100px] outline-0 text-sm truncate" onChange={(e) => setInvestorType(e.target.value as InvestorTypeInterface)}>
                           {[
                             { value: "conservative", label: "Conservative" },
                             { value: "balanced", label: "Balanced" },
@@ -137,11 +137,20 @@ export default function Analysis({
                 >
                   <div className="grid w-full gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {result?.info?.map((stock) => (
+
+
                       <div
                         key={stock?.displayName}
                         className="w-full border border-gray-300 shadow-sm rounded-md p-3 py-5"
                       >
-                        <div className="flex items-center justify-between">
+
+                        {
+                          !stock?.displayName || !stock?.symbol ?<div className="w-full h-full flex items-center justify-center">
+
+
+                            <p className="text-gray-500 font-medium">Data not available</p>
+                          </div> :<>
+                            <div className="flex items-center justify-between">
                           <Link
                             href={stock?.website || ""}
                             target="_blank"
@@ -179,6 +188,9 @@ export default function Analysis({
                             {stock?.industry}
                           </p>
                         </div>
+                          </>
+                        }
+                      
                       </div>
                     ))}
                   </div>
